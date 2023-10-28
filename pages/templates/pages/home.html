@@ -1,0 +1,218 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block content %}
+
+                <!--================================
+                         START SLIDER AREA
+                =================================-->
+
+                <!-- Banner section -->
+            <section>
+                <div class="banner-hero">
+                    <div class="container">
+                        <div class="banner-content">
+
+                            <div class="hero_content-action d-flex flex-wrap">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+<!-- banner section ends -->
+<!--================================
+        END SLIDER AREA
+=================================-->
+
+
+     <!-- About Section Start -->
+        <section class="about-section pt-150 rpt-100">
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-lg-6">
+                        <div class="about-content wow fadeInRight delay-0-2s">
+                            <div class="section-title mb-30">
+                                <span class="bg-text">about</span>
+                                <span class="sub-title">Who We Are</span>
+                                <h2>Quality & Natural Beauty Salon</h2>
+                            </div>
+                            <p class="text-justify">Sweet Princess salon and make up studio began as a strong desire to
+                                see people radiant
+                                and excellent via quality service delivery and awesome customer relationship.
+                                It started on 11th December, 2018 with an ample of customers. Since inception, we have
+                                constantly been on top of our game, meeting our customers needs, establishing valuable
+                                relationship amongst every strata of influence. We pride ourselves in quality service
+                                delivery, excellent customer relationship, quality products, large workforce and so on.
+                                You have made the right choice with Sweet Princess and it can only get better.
+                                Welcome to Sweet Princess Salon and Make up Studio</p>
+
+                            <!-- <a href="about.html" class="theme-btn style-two">read more <i
+                                    class="fas fa-long-arrow-alt-right"></i></a> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-left rmb-55 wow fadeInLeft delay-0-2s">
+                            <img src="{% static 'pages/assets/images/about/who.jpg' %}" alt="About">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section End -->
+
+
+
+
+        <!-- Features Section Start -->
+        <section class="features-section rel z-1 pt-150 rpt-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 align-self-end">
+                        <div class="features-image left-image wow fadeInDown delay-0-2s">
+                            <img src="{% static 'pages/assets/images/services/feature-left.jpg' %}" alt="Feature">
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="features-section-content">
+                            <div class="section-title text-center mb-15">
+                                <span class="bg-text">Features</span>
+                                <span class="sub-title">What We Do</span>
+                                <h5>We help bring out your inner beauty</h5>
+                            </div>
+                            <div class="features-item-wrap pb-150">
+                                <div class="feature-item wow fadeInUp delay-0-2s">
+                                    <div class="icon">
+                                        <i class="flaticon-laser"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4><a href="{% url 'contact_view' %}">Make up</a></h4>
+                                        <!-- <span>Organic Modern Treatments</span> -->
+                                    </div>
+                                </div>
+                                <div class="feature-item wow fadeInUp delay-0-4s">
+                                    <div class="icon">
+                                        <i class="flaticon-relax"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4><a href="{% url 'contact_view' %}">Hairs</a></h4>
+                                        <!-- <span>Organic Modern Treatments</span> -->
+                                    </div>
+                                </div>
+                                <div class="feature-item wow fadeInUp delay-0-6s">
+                                    <div class="icon">
+                                        <i class="flaticon-spa"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4><a href="{% url 'contact_view' %}">Pedicure</a></h4>
+                                        <!-- <span>Organic Modern Treatments</span> -->
+                                    </div>
+                                </div>
+                                <div class="feature-item wow fadeInUp delay-0-8s">
+                                    <div class="icon">
+                                        <i class="flaticon-hand-cream"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4><a href="{% url 'contact_view' %}">Manicure</a></h4>
+                                        <!-- <span>Organic Modern Treatments</span> -->
+                                    </div>
+                                </div>
+                                <div class="feature-item wow fadeInUp delay-0-8s">
+                                    <div class="icon">
+                                        <i class="flaticon-hand-cream"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4><a href="{% url 'contact_view' %}">Hair Accessories </a></h4>
+                                        <!-- <span>Organic Modern Treatments</span> -->
+                                    </div>
+                                </div>
+                                <div class="feature-item wow fadeInUp delay-0-8s">
+                                    <div class="icon">
+                                        <i class="flaticon-hand-cream"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4><a href="{% url 'contact_view' %}">Wigs </a></h4>
+                                        <!-- <span>Organic Modern Treatments</span> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="features-image right-image wow fadeInUp delay-0-2s">
+                            <img src="{% static 'pages/assets/images/services/ban1.jpg' %}" alt="Feature">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="features-leaf">
+                <img src="{% static 'pages/assets/images/shapes/feature-leaf.png' %}" alt="Leaf">
+            </div>
+        </section>
+        <!-- Features Section End -->
+
+            <!-- Booking Section Start -->
+        <section class="booking-section pb-20">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="booking-item">
+                            <div class="booking-image wow fadeInUp delay-0-2s"
+                                style="background-image: url(assets/images/booking/imag2.jpg);"></div>
+                            <div class="booking-content wow fadeInUp delay-0-4s">
+                                <span class="bg-text">Booking</span>
+                                <h3>Working Hours</h3>
+                                <!-- <p>Quis autem vel eum repreh enderit voluptate velit esse quame molestiae consequatur
+                                    veillum</p> -->
+                                <ul>
+                                    <li>
+                                        <i class="far fa-clock"></i>
+                                        <div class="booking-info">
+                                            <p>Mon - Sat: 8:00 am — 7:00 pm <br>Sunday: 1:00pm - 8:00pm </p>
+                                            <a href="{% url 'contact_view' %}" class="theme-btn">Book <i
+                                                    class="fas fa-long-arrow-alt-right"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="booking-item">
+                            <div class="booking-image wow fadeInUp delay-0-6s"
+                                style="background-image: url(assets/images/booking/imag3.jpg);"></div>
+                            <div class="booking-content wow fadeInUp delay-0-8s">
+                                <span class="bg-text">address</span>
+                                <h3>Contact us</h3>
+                                <!-- <p>Quis autem vel eum repreh enderit voluptate velit esse quame molestiae consequatur
+                                    veillum</p> -->
+                                <ul>
+                                    <li>
+                                        <i class="far fa-clock"></i>
+                                        <div class="booking-info">
+                                            <h5>Location</h5>
+                                            <p>Sweet Princess Plaza, Opp. Hossana
+                                                Glory Estate, Before Living Faith Church,
+                                                Behind AMAC Market, Federal Housing,
+                                                Lugbe FCT - Abuja.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-clock"></i>
+                                        <div class="booking-info">
+                                            <h5>Hotline</h5>
+                                            <p>Call : <a href="tel08094759379">0809 475 9379</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Booking Section End -->
+
+{% endblock %}

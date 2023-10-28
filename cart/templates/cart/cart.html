@@ -1,0 +1,129 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+    <!-- Page Banner Start -->
+    <section class="page-banner text-white py-165 rpy-130" style="background-image: url(assets/images/banners/page-banner-four.jpg);">
+        <div class="container">
+            <div class="banner-inner text-center">
+                <span class="bg-text">Cart</span>
+                <h1 class="page-title wow fadeInUp delay-0-2s">Cart Page</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb wow fadeInUp delay-0-4s">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">Cart</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <!-- Page Banner End -->
+
+
+    <!-- Cart Area Start -->
+    <div class="cart-area py-130 rpy-100">
+        <div class="container">
+            <div class="cart-item-wrap mb-35 wow fadeInUp delay-0-2s">
+                {% for item in cart %}
+                    {% with product=item.product %}
+                        <div data-index="{{product.id}}" class="cart-single-item product-item" >
+                            <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                            <div class="cart-img">
+                                <img src="{{ product.image.url }}" alt="Product Image">
+                            </div>
+                            <h5 class="product-name">{{ product.title }}</h5>
+                            <span class="product-price">{{ product.price }}</span>
+                            <div class="quantity-input">
+                                <button class="quantity-down">-</button>
+                                <input  id="select{{product.id}}" class="quantity" type="text" value="{{item.qty}}"
+                                        name="quantity">
+                                <button class="quantity-up">+</button>
+                            </div>
+                            <span>
+                                <button class="theme-btn flex-none update-button" data-index="{{product.id}}"
+                                        id="update-button" >Update
+                                </button>
+                            </span>
+                            <span>
+                                <button class="theme-btn flex-none delete-button" data-index="{{product.id}}"
+                                        id="delete-button" >Delete
+                                </button>
+                            </span>
+                            <span class="product-total-price" data-index="{{product.id}}">{{ item.total_price }}</span>
+                        </div>
+                   {% endwith %}
+                {% endfor %}
+
+
+            </div>
+
+            <div class="payment-cart-total pt-25 wow fadeInUp delay-0-2s">
+                <div class="row justify-content-end">
+                    <div class="col-lg-5">
+                        <div class="shoping-cart-total mt-45">
+                            <h4 class="form-title m-25">Cart Totals</h4>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Shipping Fee</td>
+                                        <td class="shipping-price">This is not included will be paid by the customer</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Order Total</strong></td>
+                                        <td><strong id="subtotal"  class="total-price">{{ cart.get_total_price }}0</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a href="{% url 'payment:cart' %}" class="theme-btn style-two mt-25 w-100">Proceed to checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cart Area End -->
+    <script>
+      // Delete Item
+      $(document).on('click', '.delete-button', function (e) {
+        e.preventDefault();
+        var prodid = $(this).data('index');
+        $.ajax({
+          type: 'POST',
+          url: '{% url "cart:cart-delete" %}',
+          data: {
+            productid: $(this).data('index'),
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action: 'post'
+          },
+          success: function (json) {
+            $('.product-item[data-index="' + prodid + '"]').remove();
+            document.getElementById("subtotal").innerHTML = json.subtotal;
+            document.getElementById("cart-qty").innerHTML = json.qty
+          },
+          error: function (xhr, errmsg, err) {}
+        });
+      })
+
+      // Update Item
+      $(document).on('click', '.update-button', function (e) {
+    e.preventDefault();
+    var prodid = $(this).data('index');
+    $.ajax({
+      type: 'POST',
+      url: '{% url "cart:cart-update" %}',
+      data: {
+        productid: $(this).data('index'),
+        productqty: $('#select' + prodid).val(),
+        csrfmiddlewaretoken: "{{csrf_token}}",
+        action: 'post'
+      },
+      success: function (json) {
+        document.getElementById("cart-qty").innerHTML = json.qty
+        document.getElementById("subtotal").innerHTML = json.subtotal
+      },
+      error: function (xhr, errmsg, err) {}
+    });
+  })
+    </script>
+{% endblock %}

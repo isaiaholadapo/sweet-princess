@@ -1,0 +1,66 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+     <div class="col-lg-9">
+        <div class="shop-grid-wrap">
+            <div class="shop-shorter mb-35 wow fadeInUp delay-0-2s">
+                <div class="sort-text mb-15">
+                    <span>Showing 1-09 oh 16 Result</span>
+                </div>
+                <div class="sorting-dropdown mb-15">
+                    <select>
+                        <option value="default" selected>Default Sorting</option>
+                        <option value="new">Short by Latest</option>
+                        <option value="old">Oldest Product</option>
+                        <option value="hight-to-low">High To Low</option>
+                        <option value="low-to-high">Low To High</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                {% for object in object_list.products %}
+                <div class="col-md-4 col-6 col-small">
+                    <div class="product-grid-item wow fadeInUp delay-0-2s">
+
+                        <div class="image">
+                            <a href="{{ object.get_absolute_url }}">
+                                <img src="{{ object.image.url}}" alt="Product">
+                            </a>
+                            <div class="action-btns">
+                                <a href="#"><i class="fas fa-cart-plus"></i></a>
+                                <a href="#"><i class="fas fa-heart"></i></a>
+                            </div>
+                        </div>
+                        <h6><a href="{{ object.get_absolute_url }}">{{ object.title}}</a></h6>
+                        <span class="price">Price ₦{{ object.price }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <nav aria-label="...">
+                <ul class="pagination flex-wrap justify-content-center pt-10 wow fadeInUp delay-0-8s">
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="fas fa-arrow-left"></i></span>
+                    </li>
+                    <li class="page-item active">
+                        <span class="page-link">
+                            01
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">02</a></li>
+                    <li class="page-item"><a class="page-link" href="#">03</a></li>
+                    <li class="page-item dot">04</li>
+                    <li class="page-item dot">05</li>
+                    <li class="page-item dot">06</li>
+                    <li class="page-item dot">07</li>
+                    <li class="page-item">
+                        <a class="page-link" href="#"><i class="fas fa-arrow-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+            <!-- Page Banner Start -->
+    <section class="page-banner text-white py-165 rpy-130" style="background-image: url(assets/images/banners/page-banner-four.jpg);">
+        <div class="container">
+            <div class="banner-inner text-center">
+                <span class="bg-text">Product Details</span>
+                <h1 class="page-title wow fadeInUp delay-0-2s">Product Details</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb wow fadeInUp delay-0-4s">
+                        <li class="breadcrumb-item"><a href="">Home</a></li>
+                        <li class="breadcrumb-item active">Product Details</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+        <!-- Page Banner End -->
+
+
+    <!-- Product Details Start -->
+    <section class="product-details-area pt-150 rpt-100">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="product-image-tab rmb-50 wow fadeInLeft delay-0-2s">
+                        <div class="preview-images tab-content">
+                            <div class="preview-item tab-pane fade show active" id="previewOne">
+                                <img src="{{ object.image.url }}" alt="Preview">
+                            </div>
+                            <div class="preview-item tab-pane fade" id="previewTwo">
+                                <img src="assets/images/products/product-preview-1.jpg" alt="Preview">
+                            </div>
+                            <div class="preview-item tab-pane fade" id="previewThree">
+                                <img src="assets/images/products/product-preview-1.jpg" alt="Preview">
+                            </div>
+                        </div>
+                        <div class="thumb-images nav">
+                            <a class="thumb-item nav-item active" href="#previewOne" data-toggle="tab">
+                                <img src="assets/images/products/product-thumb-1.jpg" alt="Thumb">
+                            </a>
+                            <a class="thumb-item nav-item" href="#previewTwo" data-toggle="tab">
+                                <img src="assets/images/products/product-thumb-2.jpg" alt="Thumb">
+                            </a>
+                            <a class="thumb-item nav-item" href="#previewThree" data-toggle="tab">
+                                <img src="assets/images/products/product-thumb-3.jpg" alt="Thumb">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-details-content wow fadeInRight delay-0-2s">
+                        <h2>{{ object.title}}</h2>
+                        {% if object.old_price %}
+                            <div class="text-muted">
+                                Old price: ₦{{ object.old_price }}
+                            </div>
+                        {% endif %}
+                        <div class="rating-text">
+                            <div class="price">Price ₦{{ object.price }}</div>
+                        </div>
+                        <table>
+
+                            <tr>
+                                <td><b>Category</b></td>
+                                <td><span>:</span></td>
+                                <td><a href="#">{{ object.category | title}}</a> </td>
+                            </tr>
+
+                            <tr><td></td><td></td><td></td></tr>
+                            <tr>
+                                <td><b>Quantity</b></td>
+                                <td><span>:</span></td>
+                                <td>
+                                    <div class="add-to-cart">
+                                        <div class="quantity-input">
+                                            <button class="quantity-down" id="quantityDown">
+                                                -
+                                            </button>
+                                            <input id="quantity" type="text" value="1" name="quantity">
+                                            <button class="quantity-up" id="quantityUP">
+                                                +
+                                            </button>
+                                        </div>
+                                        <button class="theme-btn style-six" id="add-button" value="{{ object.id }}" >
+                                            Add to  cart <i class="fas fa-long-arrow-alt-right"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="product-details-information pt-50 pb-60 wow fadeInUp delay-0-2s" id="product-details-information">
+                <ul class="nav nav-tabs product-information-tab mb-30">
+                    <li><a href="#details" data-toggle="tab" class="active show">Description</a></li>
+
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="details">
+                        <p>{{ object.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Details End -->
+
+    <script>
+    $(document).on('click', '#add-button', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cart:add_cart" %}',
+            data: {
+                productid: $('#add-button').val(),
+                productqty: $('#quantity').val(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+               document.getElementById("cart-qty").innerHTML = json.qty
+            },
+            error: function (xhr, errmsg, err) {}
+        });
+    })
+
+
+</script>
+
+
+{% endblock %}

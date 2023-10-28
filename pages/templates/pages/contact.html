@@ -1,0 +1,115 @@
+{% extends 'pages/base.html' %}
+
+
+{% block content %}
+        <!-- Page Banner Start -->
+        <section class="page-banner text-white py-165 rpy-130"
+            style="background-image: url(assets/images/banners/page-banner-four.jpg);">
+            <div class="container">
+                <div class="banner-inner text-center">
+                    <span class="bg-text">contact</span>
+                    <h1 class="page-title wow fadeInUp delay-0-2s">Contact Us</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb wow fadeInUp delay-0-4s">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Contact Us</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- Page Banner End -->
+
+
+        <!-- Contact Information Start -->
+        <section class="contact-info-section pt-150 rpt-100 pb-120 rpb-70">
+            <div class="container">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="container-fluid p-0">
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        {{ message }}
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-2s">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h4>Location</h4>
+                            <p>Sweet Princess Plaza, Opp. Hossana Glory Estate, Before Living Faith Church, Behind AMAC
+                                Market, Federal Housing, Lugbe FCT - Abuja.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-4s">
+                            <i class="fa fa-envelope-open-text"></i>
+                            <h4>Email Us</h4>
+                            <p><a href="mailto:info@sweetprincesssalon.com" >info@sweetprincesssalon.com</a>
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-6s">
+                            <i class="fa fa-phone-alt"></i>
+                            <h4>Hotline</h4>
+                            <p>Call : <a href="https://wa.link/ue5g2j">08038762192</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Information End -->
+
+         <!-- Contact Form Start -->
+        <div class="contact-form-area py-150 rpy-100">
+            <div class="container">
+                <div class="contact-form-wrap wow fadeInUp delay-0-2s">
+                    <div class="section-title mb-45 text-center">
+                        <h2>Send Us Message</h2>
+                    </div>
+                    <form action="." method="post" class="contact-form">
+                        {% csrf_token %}
+                        <div class="row clearfix justify-content-center">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="name"><i class="far fa-user"></i></label>
+                                    <input type="text" id="name" name="fullname" class="form-control" value=""
+                                        placeholder="Full Name">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="email"><i class="far fa-envelope"></i></label>
+                                    <input type="email" id="email" name="email" class="form-control" value=""
+                                        placeholder="Email Us" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" id="website" name="phone" class="form-control" value=""
+                                        placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <textarea rows="5" name="message" class="form-control" placeholder="Write Message"
+                                        required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6 col-sm-8">
+                                <div class="form-group mb-0">
+                                    <button type="submit" class="theme-btn w-100 style-six">send message <i
+                                            class="fas fa-long-arrow-alt-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Contact Form End -->
+
+{% endblock %}

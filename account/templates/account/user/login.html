@@ -1,0 +1,33 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+     <!-- Checkout Form Area Start -->
+        <div class="checkout-form-area pt-145 pb-150 rpt-95 rpb-100">
+            <div class="container">
+                <h4 class="form-title mb-25">Login</h4>
+                <form id="checkout-form" class="checkout-form wow fadeInUp delay-0-2s" name="checkout-form" action="."
+                      method="post">
+                   {% csrf_token %}
+                    {% if form.errors %}
+                        <p>Please correct the following errors:</p>
+                        {% for field in form %}
+                        {% if field.errors %}
+                        <div class="alert alert-primary" role="alert">
+                            {{ field.label }}: {{ field.errors|striptags }}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                     {% endif %}
+
+
+                    {{ form.as_p }}
+
+                    <button type="submit" class="theme-btn style-two mt-15">Login</button>
+
+
+                </form>
+            </div>
+        </div>
+        <!-- Checkout Form Area End -->
+
+{% endblock %}

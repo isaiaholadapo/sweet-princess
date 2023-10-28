@@ -1,0 +1,265 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  .account-form input
+    {
+    border: 2px solid #ccc;
+    height: calc(2em + .75rem + 2px);
+  }
+
+  .form-control {
+    border: 2px solid #ccc;
+  }
+
+  .account-form input:focus {
+    border-color: #1497ff;
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0px rgba(255, 0, 0, 0.6);
+  }
+</style>
+
+            <!-- Page Banner Start -->
+        <section class="page-banner text-white py-165 rpy-130" style="background-image: url(assets/images/banners/page-banner-four.jpg);">
+            <div class="container">
+                <div class="banner-inner text-center">
+                    <span class="bg-text">Checkout</span>
+                    <h1 class="page-title wow fadeInUp delay-0-2s">Checkout</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb wow fadeInUp delay-0-4s">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Checkout</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- Page Banner End -->
+
+         <!-- Checkout Form Area Start -->
+        <div class="checkout-form-area pt-145 pb-150 rpt-95 rpb-100">
+            <div class="container">
+                <h4 class="form-title mb-25">Billing Details</h4>
+
+                <form id="paymentForm" action="{% url "order:add" %}" method="post" enctype="multipart/form-data"
+                      class="checkout-form wow fadeInUp delay-0-2s"
+                      name="checkout-form" >
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h6>Personal Information</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="first_name" name="first_name" class="form-control" value="" placeholder="First Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="last_name" name="last_name" class="form-control" value="" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="phone" name="phone" class="form-control" value="" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" class="form-control" value="{{ user.email  }}" placeholder="Email Address" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <h6>Your Address</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="state" name="state" class="form-control" value="" placeholder="State" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="address1" name="address1" class="form-control" value="" placeholder="Address" required>
+                            </div>
+                        </div>
+
+                        <div class="payment-cart-total pt-25">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-6">
+                            <div class="payment-method mt-45 wow fadeInUp delay-0-2s">
+                                <h4 class="form-title my-25">Payment Method</h4>
+                                <ul id="paymentMethod" class="mb-30">
+                                    <!-- Default unchecked -->
+                                    <li class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="methodone" name="defaultExampleRadios" checked>
+                                        <label class="custom-control-label" for="methodone" data-toggle="collapse"
+                                               data-target="#collapseOne" aria-controls="collapseOne">Bank Transfer</label>
+
+                                        <div id="collapseOne" class="collapse show" data-parent="#paymentMethod" style="">
+                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.
+                                                Your order will not be shipped until payment is verified.</p>
+                                            <h6>Bank: Guaranty Trust Bank</h6>
+                                            <h6>Account Number: 0109405578</h6>
+                                            <h6> Name on Account: NGADI PRINCESS</h6>
+                                            <div class="form-group">
+                                            <h6>Upload payment receipt:</h6>
+                                            <input type="file" class="form-control-file" id="exampleFormControlFile1" required>
+                                          </div>
+                                        </div>
+                                    </li>
+
+
+
+                                </ul>
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Please note that shipping fee is not included in this order. Payment will be made separately</p>
+                                </div>
+                                <button type="submit" class="theme-btn style-two mt-15">Place order</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="shoping-cart-total mt-45 wow fadeInUp delay-0-4s">
+                                <h4 class="form-title m-25">Cart Totals</h4>
+                                <table>
+                                    <tbody>
+
+                                        <tr>
+                                            <td ><strong>Order Total</strong></td>
+                                            <td id="order-total"><strong>{{total}}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% comment %}
+                        <div class="form-submit">
+                      <p>Please note that shipping fee is not included in this order. Payment will be made separately</p>
+                        <button type="submit" onclick="payWithPaystack()" class="theme-btn style-two mt-15">Place order</button>
+                  </div>
+                  {% endcomment %}
+                    </div>
+                </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Checkout Form Area End -->
+
+
+    <script>
+        {% comment %} Make csrf token availble in JS files {% endcomment %}
+        let total = document.getElementById('order-total')
+        total.textContent = {{total}} / 100
+    </script>
+    {% comment %}
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        const paymentForm = document.getElementById('paymentForm');
+        paymentForm.addEventListener("submit", payWithPaystack, false);
+
+        function payWithPaystack(e) {
+            e.preventDefault();
+            let total = {{total}} / 100
+            var formData = new FormData();
+            formData.append('first_name', $('#first_name').val())
+            formData.append('last_name', $('#last_name').val())
+            formData.append('phone', $('#phone').val())
+            formData.append('email', $('#email').val())
+            formData.append('state', $('#state').val())
+            formData.append('address1', $('#address1').val())
+            formData.append('action', 'create_order')
+            formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+
+            let handler = PaystackPop.setup({
+                key: '{{client_secret}}',
+                email: '{{user.email}}',
+                amount: total * 100,
+                ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                // label: "Optional string that replaces customer email"
+                onClose: function() {
+                    alert('Window closed.');
+                },
+                callback: function(response) {
+                    var referenceid = response.reference
+                    // let message = 'Payment complete! Reference: ' + response.reference;
+                    // alert(message);
+                    $.ajax({
+                        type: "GET",
+                        url: "http://sweetprincesssalon.com/payment/verify/" + referenceid,
+                        beforeSend: function() {
+                            console.log("Sending request");
+                            $(".alert").text("Sending request");
+
+                        },
+                        success: function(response) {
+                            if (response[3].status == "success") {
+                                $(".alert").removeClass("alert-warning");
+                                $(".alert").addClass("alert-success");
+                                $(".alert").text("Transaction verified");
+                                console.log("Transaction verified");
+
+                                {#alert('transaction verified')#}
+
+                                //window.location.replace("{% url 'payment:order_placed' %}")
+
+                            } else {
+                                $(".alert").text("Transaction reference not found");
+                            }
+                        }
+
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "order:add" %}',
+                        data: formData,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function (){
+                            alert('Order has been placed successfully')
+                            window.location.replace("{% url 'payment:order_placed' %}")
+                          },
+                        error: function(xhr, errmsg, err) {
+                              console.log(xhr.status + ":" + xhr.responseText)
+                        }
+                    });
+                     {% endcomment %}
+                    {% comment %}
+                    $.ajax({
+                        type: "post",
+                        url: "http://127.0.0.0.1:8000/payment/add/",
+                        beforeSend: function() {
+                            console.log("Sending request");
+                        },
+                        data: {
+                            csrfmiddlewaretoken: CSRF_TOKEN,
+
+                            first_name: $("first_name").val,
+                            last_name: $("last_name").val,
+                            phone: $("phone").val,
+                            address: $("address").val,
+                            state: $("state").val,
+                            {#new_order_key: referenceid#}
+                            action: "post",
+                        },
+                          {#dataType: "json",#}
+
+                        success: function(data) {
+                            alert('saved')
+                            window.location.replace("{% url 'payment:order_placed' %}")                        }
+                    });
+                    {% endcomment %}
+    {% comment %}
+                },
+
+            });
+    handler.openIframe();
+}
+    </script>
+   {% endcomment %}
+{% endblock %}

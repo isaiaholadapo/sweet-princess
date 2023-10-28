@@ -1,0 +1,42 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+     <!-- Checkout Form Area Start -->
+        <div class="checkout-form-area pt-145 pb-150 rpt-95 rpb-100">
+            <div class="container">
+                <h4 class="form-title mb-25">Register</h4>
+                <form id="checkout-form" class="checkout-form wow fadeInUp delay-0-2s" name="checkout-form" action="." method="post">
+                   {% csrf_token %}
+                    {% if form.errors %}
+                        <p>Please correct the following errors:</p>
+                        {% for field in form %}
+                        {% if field.errors %}
+                        <div class="alert alert-primary" role="alert">
+                            {{ field.label }}: {{ field.errors|striptags }}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                     {% endif %}
+
+
+                    <label>{{ form.email.label}}<span class="text-muted small">
+                            (Required)</span></label>
+                    {{ form.email }}
+                    <label>{{ form.password.label}}<span class="text-muted mb-4">
+                            </span></label>
+                     <small class="form-text text-muted mb-4 small">
+                        At least 8 characters and 1 digit
+                    </small>
+                    {{ form.password }}
+                    <label>{{ form.password2.label}}<span class="text-muted small">
+                            (Required)</span></label>
+                    {{ form.password2 }}
+                    <button type="submit" class="theme-btn style-two mt-15">Register</button>
+
+
+                </form>
+            </div>
+        </div>
+        <!-- Checkout Form Area End -->
+
+{% endblock %}

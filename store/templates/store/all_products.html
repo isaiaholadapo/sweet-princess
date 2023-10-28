@@ -1,0 +1,85 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+
+   <!-- Page Banner Start -->
+        <section class="page-banner text-white py-165 rpy-130"
+            style="background-image: url('../assets/images/banners/page-banner-four.jpg);'">
+            <div class="container">
+                <div class="banner-inner text-center">
+                    <span class="bg-text">Shop</span>
+                    <h1 class="page-title wow fadeInUp delay-0-2s">Shop </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb wow fadeInUp delay-0-4s">
+                            <li class="breadcrumb-item"><a href="{% url 'home_view' %}">Home</a></li>
+                            <li class="breadcrumb-item active">Shop Grid</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- Page Banner End -->
+
+     <!-- Shop Grid Start -->
+        <section class="shop-grid-area py-150 rpy-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="shop-sidebar rmb-75">
+                            <div class="widget search-widget wow fadeInUp delay-0-2s">
+{#                                <form action="#">#}
+{#                                    <input type="search" placeholder="Search" required>#}
+{#                                    <button type="submit"><i class="fas fa-search"></i></button>#}
+{#                                </form>#}
+                            </div>
+                            <div class="widget category-widget wow fadeInUp delay-0-2s">
+                                <h5 class="widget-title">Category</h5>
+                                <ul>
+                                    {% for object in categories %}
+                                    <li><a href="{{ object.get_absolute_url }}">{{ object|title}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="shop-grid-wrap">
+                            <div class="shop-shorter mb-35 wow fadeInUp delay-0-2s">
+                                <div class="sort-text mb-15">
+                                    <span>All Products</span>
+                                </div>
+
+                            </div>
+                            <div class="row justify-content-between">
+                                {% for object in object_list %}
+                                <div class="col-md-4 col-6 col-small">
+                                    <div class="product-grid-item wow fadeInUp delay-0-2s">
+
+                                        <div class="image">
+                                            <a href="{{ object.get_absolute_url }}">
+                                                <img src="{{ object.image.url}}" width="200px" alt="Product">
+                                            </a>
+                                            <div class="action-btns">
+                                                <a href="#"><i class="fas fa-cart-plus"></i></a>
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                        <h6><a href="{{ object.get_absolute_url }}">{{ object.title}}</a></h6>
+                                        <span class="price">Price ₦{{ object.price }}</span>
+
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Shop Grid End -->
+
+{% endblock %}
+

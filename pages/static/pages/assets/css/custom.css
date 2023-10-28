@@ -1,0 +1,76 @@
+.logo-width {
+    max-width: 90px !important;
+}
+
+
+/* Home Hero Section */
+.banner-hero  {
+    background: url('../../assets/images/banners/home.png');
+    width: 100%;
+    height: 90vh;
+    margin-bottom: 60px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner-content {
+    color: #000;
+    width: 50%;
+    padding-top: 120px;
+}
+
+.banner-content span {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+
+.banner-content h1 {
+    color: #000;
+    font-size: 40px;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+}
+
+.banner-content p {
+    margin-bottom: 40px;
+    font-size: 18px;
+    letter-spacing: 3px;
+}
+
+.banner-content a {
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.banner-content .btn-one {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.banner-content .btn-two {
+    padding: 10px 30px;
+    background-color: #fff;
+    border: 2px solid #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    color: #000;
+}
+
+@media (max-width: 767px)  {
+    .banner-hero {
+    background: url(../../assets/images/banners/home.png);
+    width: 100%;
+    height: 25vh;
+     margin-bottom: -80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+}
+
+
